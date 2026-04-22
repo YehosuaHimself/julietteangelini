@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Juliette Angelini — Psytrance & Psy-Techno Artist</title>
+
+  <meta name="description" content="Juliette Angelini — Italian-born Psytrance & Psy-Techno DJ and producer. Sound of God Recordings artist. Book now for festivals, clubs & events worldwide." />
+  <meta name="keywords" content="Juliette Angelini, Psytrance DJ, Psy-Techno DJ, Book Psytrance DJ Europe, Sound of God Recordings, Female Psytrance DJ, Italian Psytrance" />
+  <meta name="author" content="Juliette Angelini" />
+  <meta property="og:title" content="Juliette Angelini — Italian Psytrance" />
+  <meta property="og:description" content="Italian-born Psytrance visionary. Sound of God Recordings." />
+  <meta property="og:type" content="music.musician" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&q=80" />
+  <meta property="og:url" content="https://julietteangelini.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Juliette Angelini" />
+  <meta name="twitter:description" content="Italian-born Psytrance visionary. Sound of God Recordings." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&q=80" />
+
+  <!-- Helvetica Neue via system font stack, fallback to Google's Roboto Condensed for display, DM Sans body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- GSAP + ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lenis Smooth Scroll CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════════════════ */
+    :root {
+      --void: #09090f;
+      --deep: #080814;
+      --violet: #8b00ff;
+      --magenta: #ff00aa;
+      --gold: #f5c400;
+      --cyan: #00f0ff;
+      --glow-violet: 0 0 30px #8b00ff88, 0 0 60px #8b00ff44;
+      --glow-magenta: 0 0 30px #ff00aa88, 0 0 60px #ff00aa44;
+      --glow-gold: 0 0 30px #f5c40088, 0 0 60px #f5c40044;
+      --glow-cyan: 0 0 30px #00f0ff88, 0 0 60px #00f0ff44;
+
+      /* Helvetica Neue font stack — system-first, broadest coverage */
+      --font-sans: "Helvetica Neue", HelveticaNeue, Helvetica, "Barlow Condensed", Arial, sans-serif;
+      --font-display: "Helvetica Neue", HelveticaNeue, Helvetica, "Barlow Condensed", sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--void);
+      color: #e8e0f0;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: auto; /* normal cursor on all devices */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Remove custom cursor on mobile */
+    @media (pointer: coarse) {
+      body { cursor: auto !important; }
+      * { cursor: auto !important; }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       CUSTOM CURSOR — desktop only
+    ═══════════════════════════════════════════════════════ */
+    #cursor, #cursor-ring {
+      display: none;
+    }
+    @media (pointer: fine) {
+      body { cursor: none; }
+      #cursor {
+        display: block;
+        position: fixed;
+        width: 12px; height: 12px;
+        background: var(--cyan);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+        mix-blend-mode: screen;
+      }
+      #cursor-ring {
+        display: block;
+        position: fixed;
+        width: 40px; height: 40px;
+        border: 1px solid rgba(0, 240, 255, 0.5);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       TYPOGRAPHY — All headings CAPS via text-transform
+    ═══════════════════════════════════════════════════════ */
+    h1, h2, h3, h4, .section-title, .hero-title, .reel-title, .final-title,
+    .nav-logo, .sound-card-title, .event-name, .booker-card-title,
+    .modal-title, .test-author, .footer-logo, .mobile-nav-link,
+    .label-name, .section-label, .timeline-year {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .glow-violet { text-shadow: 0 0 20px #8b00ffaa, 0 0 40px #8b00ff66, 0 0 80px #8b00ff33; }
+    .glow-magenta { text-shadow: 0 0 20px #ff00aaaa, 0 0 40px #ff00aa66, 0 0 80px #ff00aa33; }
+    .glow-gold { text-shadow: 0 0 20px #f5c400aa, 0 0 40px #f5c40066; }
+    .glow-cyan { text-shadow: 0 0 20px #00f0ffaa, 0 0 40px #00f0ff66; }
+
+    /* ═══════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.5s;
+    }
+    #nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8, 8, 18, 0.88);
+      padding: 1rem 3rem;
+      border-bottom: 1px solid rgba(139, 0, 255, 0.2);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--magenta); }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+      background: var(--magenta);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-book-btn {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--void);
+      background: var(--magenta);
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .nav-book-btn:hover {
+      background: var(--violet);
+      box-shadow: var(--glow-violet);
+    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { width: 28px; height: 1px; background: #fff; transition: all 0.3s; display: block; }
+
+    /* ═══════════════════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      width: 100vw; height: 100svh;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(8,8,18,0.55) 60%, rgba(8,8,18,0.92) 100%);
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative; z-index: 3;
+      text-align: center;
+      padding: 0 2rem;
+      max-width: 1100px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(20px);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4.5rem, 13vw, 12rem);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      opacity: 0; transform: translateY(30px);
+    }
+    .hero-title .line-1 { display: block; }
+    .hero-title .line-2 {
+      display: block;
+      background: linear-gradient(90deg, var(--violet), var(--magenta), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px #8b00ff88);
+    }
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(0.95rem, 2.2vw, 1.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(232,224,240,0.8);
+      margin-bottom: 3rem;
+      letter-spacing: 0.04em;
+      opacity: 0; transform: translateY(20px);
+    }
+    .hero-ctas {
+      display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+    }
+    .btn-primary {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.1rem 2.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn-primary.magenta {
+      color: var(--void);
+      background: var(--magenta);
+    }
+    .btn-primary.magenta:hover {
+      box-shadow: var(--glow-magenta);
+      transform: translateY(-2px);
+    }
+    .btn-primary.violet {
+      color: #fff;
+      border: 1px solid var(--violet);
+      background: rgba(139,0,255,0.15);
+    }
+    .btn-primary.violet:hover {
+      background: var(--violet);
+      box-shadow: var(--glow-violet);
+    }
+    .btn-primary.outline {
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-primary.outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0;
+    }
+    .scroll-indicator span {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5); opacity: 0.3; }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SECTION DIVIDERS — Frequency Lines
+    ═══════════════════════════════════════════════════════ */
+    .freq-divider {
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--violet), var(--magenta), var(--cyan), transparent);
+      position: relative; overflow: hidden;
+    }
+    .freq-divider::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      transform: translateX(-100%);
+      animation: freqSweep 3s ease-in-out infinite;
+    }
+    @keyframes freqSweep { to { transform: translateX(200%); } }
+
+    /* ═══════════════════════════════════════════════════════
+       SECTION BASE
+    ═══════════════════════════════════════════════════════ */
+    section { position: relative; overflow: hidden; }
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .section-intro {
+      font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      font-style: italic;
+      color: rgba(232,224,240,0.7);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       SIGNATURE SOUND
+    ═══════════════════════════════════════════════════════ */
+    #sound {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--void) 0%, #0d0820 50%, var(--void) 100%);
+    }
+    .sound-container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .sound-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 4rem;
+    }
+    .sound-card {
+      position: relative;
+      background: rgba(139,0,255,0.05);
+      border: 1px solid rgba(139,0,255,0.15);
+      padding: 2.5rem; overflow: hidden;
+      transition: all 0.4s;
+    }
+    .sound-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(139,0,255,0.08), rgba(255,0,170,0.05));
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .sound-card:hover::before { opacity: 1; }
+    .sound-card:hover { border-color: rgba(139,0,255,0.45); }
+    .sound-card-num {
+      font-family: var(--font-display);
+      font-size: 4rem; font-weight: 700;
+      color: rgba(139,0,255,0.15);
+      position: absolute; top: 1rem; right: 1.5rem; line-height: 1;
+    }
+    .sound-card-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff; margin-bottom: 0.3rem;
+    }
+    .sound-card-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 1.5rem; display: block;
+    }
+    .visualizer {
+      display: flex; align-items: flex-end; gap: 3px; height: 50px; margin-bottom: 1.5rem;
+    }
+    .vis-bar {
+      flex: 1; background: var(--violet); border-radius: 1px;
+      animation: barPulse var(--dur, 0.8s) ease-in-out infinite alternate;
+      transform-origin: bottom;
+    }
+    @keyframes barPulse {
+      0% { transform: scaleY(var(--min, 0.2)); }
+      100% { transform: scaleY(var(--max, 1)); }
+    }
+    .soundcloud-embed {
+      width: 100%; border: none;
+      background: transparent;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       MUSIC PLAYER — Yehosua SoundCloud embed
+    ═══════════════════════════════════════════════════════ */
+    .sc-player-wrap {
+      margin-top: 0.8rem;
+      border: 1px solid rgba(139,0,255,0.2);
+      background: rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       BIO / STORY
+    ═══════════════════════════════════════════════════════ */
+    #bio { padding: 0; }
+    .bio-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+    .bio-img-wrap {
+      position: relative; overflow: hidden; width: 100%;
+    }
+    .bio-img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .bio-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--void) 100%);
+    }
+    .bio-stat {
+      display: flex; gap: 2rem; margin-top: 2rem;
+      padding: 1.5rem; background: rgba(0,0,0,0.5);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--magenta); line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); display: block; margin-top: 0.3rem;
+    }
+    .bio-text-col {
+      padding: 6rem 4rem;
+      background: var(--void);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .bio-text {
+      font-family: var(--font-sans);
+      font-size: 0.95rem; line-height: 1.9;
+      color: rgba(232,224,240,0.7); margin-bottom: 1.5rem;
+    }
+
+    /* Timeline */
+    .timeline { margin: 3rem 0; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--violet), var(--magenta), transparent);
+    }
+    .timeline-item { padding: 0 0 2rem 2rem; position: relative; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -4px; top: 6px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--magenta); box-shadow: var(--glow-magenta);
+    }
+    .timeline-year {
+      font-family: var(--font-display);
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--magenta); margin-bottom: 0.2rem;
+    }
+    .timeline-desc { font-family: var(--font-sans); font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════
+       VIDEO / CINEMATIC REEL
+    ═══════════════════════════════════════════════════════ */
+    #reel { position: relative; height: 70vh; overflow: hidden; }
+    .reel-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1600&q=80');
+      background-size: cover; background-position: center;
+      filter: saturate(0.5) brightness(0.55);
+      transform: scale(1.05);
+    }
+    .reel-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,8,18,0.5) 0%, transparent 30%, transparent 70%, rgba(8,8,18,0.8) 100%);
+    }
+    .reel-content {
+      position: relative; z-index: 2;
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+    }
+    .reel-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700; text-transform: uppercase;
+      color: #fff; line-height: 1; margin-bottom: 1rem;
+    }
+    #reel-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.4; }
+
+    /* ═══════════════════════════════════════════════════════
+       GALLERY — Cinematic psytrance outdoor shots
+    ═══════════════════════════════════════════════════════ */
+    #gallery {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--void), #08080f, var(--void));
+    }
+    .gallery-container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 80px;
+      gap: 4px; margin-top: 4rem;
+    }
+    .gallery-item {
+      overflow: hidden; cursor: zoom-in; position: relative;
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(139,0,255,0.4), rgba(255,0,170,0.3));
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease, filter 0.4s;
+      filter: saturate(0.75) brightness(0.85);
+    }
+    .gallery-item:hover img { transform: scale(1.08); filter: saturate(1.2) brightness(1); }
+    .gi-1 { grid-column: 1/6; grid-row: 1/5; }
+    .gi-2 { grid-column: 6/9; grid-row: 1/3; }
+    .gi-3 { grid-column: 9/13; grid-row: 1/4; }
+    .gi-4 { grid-column: 6/9; grid-row: 3/6; }
+    .gi-5 { grid-column: 9/13; grid-row: 4/7; }
+    .gi-6 { grid-column: 1/5; grid-row: 5/8; }
+    .gi-7 { grid-column: 5/9; grid-row: 6/9; }
+    .gi-8 { grid-column: 9/13; grid-row: 7/10; }
+    .gi-9 { grid-column: 1/5; grid-row: 8/11; }
+    .gi-10 { grid-column: 5/9; grid-row: 9/12; }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.96); display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    #lightbox-close {
+      position: absolute; top: 2rem; right: 2rem;
+      color: #fff; font-size: 2rem; cursor: pointer; background: none; border: none;
+      transition: color 0.3s;
+    }
+    #lightbox-close:hover { color: var(--magenta); }
+
+    /* ═══════════════════════════════════════════════════════
+       SOUND OF GOD RECORDINGS
+    ═══════════════════════════════════════════════════════ */
+    #label {
+      padding: 8rem 0;
+      background: radial-gradient(ellipse at 50% 50%, #0d0820 0%, var(--void) 70%);
+      position: relative;
+    }
+    .label-bg-glyph {
+      position: absolute;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 25vw; text-transform: uppercase;
+      color: rgba(139,0,255,0.03);
+      pointer-events: none; user-select: none;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap;
+    }
+    .label-container {
+      max-width: 1200px; margin: 0 auto; padding: 0 3rem;
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .label-logo-wrap { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+    .label-logo-icon {
+      width: 60px; height: 60px; border: 1px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; box-shadow: var(--glow-gold);
+      flex-shrink: 0;
+    }
+    .label-logo-icon svg { width: 30px; height: 30px; }
+    .label-name {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+    }
+    .label-sub { font-family: var(--font-sans); font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(245,196,0,0.5); display: block; }
+    .label-desc {
+      font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.8;
+      color: rgba(232,224,240,0.7); margin-bottom: 2rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       EVENTS / TOUR
+    ═══════════════════════════════════════════════════════ */
+    #events { padding: 8rem 0; background: var(--void); }
+    .events-container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .events-list { margin-top: 4rem; }
+    .event-row {
+      display: grid; grid-template-columns: 80px 1fr auto auto; align-items: center;
+      gap: 2rem; padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(139,0,255,0.12);
+      transition: all 0.3s;
+    }
+    .event-row:hover {
+      background: rgba(139,0,255,0.05);
+      margin: 0 -1rem; padding: 1.8rem 1rem;
+      border-color: rgba(139,0,255,0.3);
+    }
+    .event-date { text-align: center; }
+    .event-date-day {
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
+      line-height: 1; color: var(--magenta);
+    }
+    .event-date-month {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .event-name {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: #fff; margin-bottom: 0.2rem;
+    }
+    .event-location {
+      font-family: var(--font-sans);
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .event-tag {
+      font-family: var(--font-sans);
+      font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(139,0,255,0.4); color: var(--violet);
+    }
+    .event-ticket-btn {
+      font-family: var(--font-sans);
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.7rem 1.5rem;
+      background: transparent; border: 1px solid var(--magenta);
+      color: var(--magenta); cursor: pointer;
+      transition: all 0.3s; text-decoration: none; white-space: nowrap;
+    }
+    .event-ticket-btn:hover {
+      background: var(--magenta); color: var(--void); box-shadow: var(--glow-magenta);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       BOOKERS / EPK
+    ═══════════════════════════════════════════════════════ */
+    #bookers {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--void) 0%, #0a0520 50%, var(--void) 100%);
+    }
+    .bookers-container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .bookers-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; margin-top: 4rem; background: rgba(139,0,255,0.2);
+    }
+    .booker-card {
+      background: var(--void); padding: 3rem 2.5rem;
+      position: relative; overflow: hidden; transition: all 0.4s;
+    }
+    .booker-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--magenta));
+      transform: scaleX(0); transition: transform 0.4s;
+    }
+    .booker-card:hover::before { transform: scaleX(1); }
+    .booker-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(139,0,255,0.4); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; color: var(--violet);
+    }
+    .booker-card-title {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: #fff; margin-bottom: 0.8rem;
+    }
+    .booker-card-text { font-family: var(--font-sans); font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
+    .epk-download {
+      display: inline-flex; align-items: center; gap: 0.8rem; margin-top: 4rem;
+      font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border: 1px solid rgba(245,196,0,0.3); padding: 1rem 2rem; transition: all 0.3s;
+    }
+    .epk-download:hover { background: rgba(245,196,0,0.08); box-shadow: var(--glow-gold); }
+
+    /* ═══════════════════════════════════════════════════════
+       BOOKING FORM — Optimized final CTA
+    ═══════════════════════════════════════════════════════ */
+    #book {
+      padding: 8rem 0; background: var(--void); position: relative;
+    }
+    .fractal-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(139,0,255,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(255,0,170,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .book-container { max-width: 800px; margin: 0 auto; padding: 0 3rem; position: relative; z-index: 1; }
+
+    /* Booking intro — large CTA feel */
+    .book-hero-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem; display: block;
+    }
+    .book-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
+      text-transform: uppercase; line-height: 1;
+      color: #fff; margin-bottom: 1.5rem;
+    }
+    .book-hero-sub {
+      font-family: var(--font-serif);
+      font-size: 1.15rem; font-style: italic;
+      color: rgba(232,224,240,0.65); margin-bottom: 3rem; line-height: 1.7;
+    }
+    /* Urgency strip */
+    .book-urgency {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,0,170,0.07);
+      border: 1px solid rgba(255,0,170,0.2);
+      padding: 1rem 1.5rem; margin-bottom: 3rem;
+      font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.65);
+    }
+    .book-urgency-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--magenta); box-shadow: var(--glow-magenta);
+      animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .book-form { margin-top: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group.full { grid-column: 1/3; }
+    .form-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.45);
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(139,0,255,0.2);
+      color: #fff; padding: 0.9rem 1rem;
+      font-family: var(--font-sans); font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s; -webkit-appearance: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--violet); box-shadow: 0 0 15px rgba(139,0,255,0.2);
+    }
+    .form-select option { background: #0a0a0a; }
+    .form-textarea { min-height: 140px; resize: vertical; }
+    .form-submit {
+      grid-column: 1/3;
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      background: linear-gradient(90deg, var(--violet), var(--magenta));
+      color: #fff; border: none; padding: 1.4rem 3rem;
+      cursor: pointer; width: 100%; transition: all 0.3s;
+    }
+    .form-submit:hover { box-shadow: 0 0 50px rgba(255,0,170,0.5); transform: translateY(-2px); }
+
+    /* Booking confirmation modal */
+    #booking-modal {
+      position: fixed; inset: 0; z-index: 9500;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(15px);
+    }
+    #booking-modal.open { display: flex; }
+    .modal-inner {
+      text-align: center; padding: 4rem; border: 1px solid rgba(139,0,255,0.3);
+      background: var(--deep); max-width: 500px; position: relative;
+      animation: modalIn 0.5s ease;
+    }
+    @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-glyph { font-family: var(--font-display); font-size: 5rem; color: var(--magenta); text-shadow: var(--glow-magenta); margin-bottom: 1rem; }
+    .modal-title {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 0.8rem;
+    }
+    .modal-text { font-family: var(--font-sans); font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+    .modal-close {
+      margin-top: 2rem;
+      background: none; border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; padding: 0.7rem 2rem; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; transition: all 0.3s;
+    }
+    .modal-close:hover { border-color: var(--magenta); color: var(--magenta); }
+
+    /* ═══════════════════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════════════════ */
+    #testimonials { padding: 8rem 0; background: linear-gradient(180deg, var(--void), #0c0818, var(--void)); }
+    .test-container { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+    .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .test-card {
+      padding: 2.5rem; border: 1px solid rgba(139,0,255,0.12); position: relative;
+      transition: border-color 0.4s, transform 0.4s; background: rgba(255,255,255,0.01);
+    }
+    .test-card:hover { border-color: rgba(139,0,255,0.4); transform: translateY(-4px); }
+    .test-quote {
+      font-family: var(--font-serif); font-size: 1.05rem; font-style: italic;
+      line-height: 1.75; color: rgba(232,224,240,0.75); margin-bottom: 1.5rem;
+    }
+    .test-quote::before { content: '"'; font-size: 3rem; color: var(--violet); line-height: 0; display: block; margin-bottom: 0.5rem; margin-top: 0.5rem; }
+    .test-author {
+      font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--magenta);
+    }
+    .test-role { font-family: var(--font-sans); font-size: 0.65rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+
+    /* ═══════════════════════════════════════════════════════
+       CONNECT / CONTACT
+    ═══════════════════════════════════════════════════════ */
+    #connect { padding: 8rem 0; background: var(--void); }
+    .connect-container {
+      max-width: 1200px; margin: 0 auto; padding: 0 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    }
+    .social-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 3rem; }
+    .social-link {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: all 0.3s;
+    }
+    .social-link:hover { color: #fff; border-color: var(--magenta); padding-left: 0.5rem; }
+    .social-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════════════════════
+       FINAL FREQUENCY / CLOSING — Book Now focused
+    ═══════════════════════════════════════════════════════ */
+    #final {
+      padding: 10rem 0; position: relative; text-align: center; overflow: hidden;
+    }
+    #final-canvas { position: absolute; inset: 0; z-index: 0; }
+    .final-content { position: relative; z-index: 1; }
+    .final-title {
+      font-family: var(--font-display); font-size: clamp(3rem, 8vw, 8rem); font-weight: 700;
+      line-height: 1; text-transform: uppercase; color: #fff; margin-bottom: 1.5rem;
+    }
+    .final-title span {
+      background: linear-gradient(90deg, var(--gold), var(--magenta));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .final-sub {
+      font-family: var(--font-serif); font-size: 1.3rem; font-style: italic;
+      color: rgba(232,224,240,0.6); margin-bottom: 3rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    footer {
+      padding: 3rem; border-top: 1px solid rgba(139,0,255,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: #fff;
+    }
+    .footer-logo span { color: var(--magenta); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a {
+      font-family: var(--font-sans);
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--magenta); }
+    .footer-copy { font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.2); }
+    .footer-echo {
+      width: 100%; text-align: center;
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.5em; text-transform: uppercase; color: rgba(139,0,255,0.25); margin-top: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       AMBIENT AUDIO TOGGLE
+    ═══════════════════════════════════════════════════════ */
+    #ambient-toggle {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 2000;
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid rgba(0,240,255,0.4);
+      background: rgba(0,240,255,0.08);
+      color: var(--cyan); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px);
+    }
+    #ambient-toggle:hover { background: rgba(0,240,255,0.2); box-shadow: var(--glow-cyan); }
+    #ambient-toggle svg { width: 18px; height: 18px; }
+    .ambient-pulse {
+      position: absolute; inset: -8px; border-radius: 50%;
+      border: 1px solid rgba(0,240,255,0.2);
+      animation: ambientRing 2s ease-in-out infinite;
+    }
+    @keyframes ambientRing { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
+
+    /* ═══════════════════════════════════════════════════════
+       LANGUAGE TOGGLE
+    ═══════════════════════════════════════════════════════ */
+    #lang-toggle { position: fixed; bottom: 2rem; left: 2rem; z-index: 2000; display: flex; gap: 0.5rem; }
+    .lang-btn {
+      font-family: var(--font-sans);
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.4rem 0.8rem; border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.5); color: rgba(255,255,255,0.4);
+      cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px);
+    }
+    .lang-btn.active { border-color: var(--magenta); color: var(--magenta); }
+    .lang-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+
+    /* ═══════════════════════════════════════════════════════
+       REVEAL ANIMATIONS
+    ═══════════════════════════════════════════════════════ */
+    .reveal { opacity: 0; transform: translateY(40px); }
+    .reveal-left { opacity: 0; transform: translateX(-60px); }
+    .reveal-right { opacity: 0; transform: translateX(60px); }
+    .reveal-scale { opacity: 0; transform: scale(0.92); }
+
+    /* ═══════════════════════════════════════════════════════
+       MOBILE RESPONSIVE — OPTIMIZED
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      #nav { padding: 1.2rem 1.5rem; }
+      .nav-links, .nav-book-btn { display: none; }
+      .hamburger { display: flex; }
+
+      .sound-grid { grid-template-columns: 1fr; }
+      .bio-inner { grid-template-columns: 1fr; }
+      .bio-img-wrap { max-height: 55vw; overflow: hidden; }
+      .bio-text-col { padding: 3rem 2rem; }
+      .label-container { grid-template-columns: 1fr; gap: 3rem; }
+      .bookers-grid { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .connect-container { grid-template-columns: 1fr; gap: 3rem; }
+
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+      .gi-1,.gi-2,.gi-3,.gi-4,.gi-5,.gi-6,.gi-7,.gi-8,.gi-9,.gi-10 {
+        grid-column: auto; grid-row: auto;
+      }
+
+      .event-row { grid-template-columns: 60px 1fr auto; }
+      .event-tag { display: none; }
+
+      .book-form { grid-template-columns: 1fr; }
+      .book-form .form-group.full { grid-column: 1; }
+      .form-submit { grid-column: 1; }
+
+      footer { flex-direction: column; text-align: center; }
+      #ambient-toggle { bottom: 5rem; }
+    }
+
+    /* MOBILE SPECIFIC — ultra-optimized for touch */
+    @media (max-width: 600px) {
+      #nav { padding: 1rem 1.2rem; }
+      .nav-logo { font-size: 1rem; }
+
+      /* Hero */
+      .hero-title { font-size: clamp(3.2rem, 16vw, 5.5rem); }
+      .hero-subtitle { font-size: 0.95rem; }
+      .hero-ctas { flex-direction: column; align-items: center; gap: 1rem; }
+      .btn-primary { width: 100%; max-width: 320px; text-align: center; padding: 1rem 2rem; }
+
+      /* Sections */
+      .sound-container, .gallery-container, .events-container, .bookers-container, .book-container, .test-container, .connect-container { padding: 0 1.2rem; }
+      #sound, #gallery, #events, #bookers, #book, #testimonials, #connect, #label { padding: 5rem 0; }
+      .bio-text-col { padding: 2.5rem 1.2rem; }
+      .label-container { padding: 0 1.2rem; }
+
+      .section-title { font-size: clamp(2rem, 11vw, 3.5rem); }
+
+      /* Events */
+      .event-row { grid-template-columns: 55px 1fr; gap: 1rem; }
+      .event-ticket-btn { display: none; }
+
+      /* Events — show CTA differently */
+      .event-row { position: relative; cursor: pointer; }
+      .event-row::after { content: 'Book →'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--magenta); }
+
+      /* Gallery mobile: single column */
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; gap: 6px; }
+
+      /* Book form */
+      .book-form { gap: 1rem; }
+      .form-input, .form-select, .form-textarea { font-size: 16px; /* Prevent iOS zoom */ }
+      .form-submit { font-size: 1rem; letter-spacing: 0.15em; padding: 1.2rem; }
+
+      /* Final */
+      #final { padding: 6rem 0; }
+      .final-title { font-size: clamp(2.5rem, 13vw, 5rem); }
+
+      /* Footer */
+      footer { padding: 2rem 1.2rem; }
+      .footer-links { justify-content: center; gap: 1rem; }
+
+      /* Bottom buttons pushed up */
+      #ambient-toggle { bottom: 4.5rem; right: 1.2rem; }
+      #lang-toggle { bottom: 4.5rem; left: 1.2rem; }
+
+      /* Testimonials */
+      .test-card { padding: 1.8rem; }
+
+      /* Reel */
+      #reel { height: 50vh; }
+      .reel-title { font-size: clamp(2.5rem, 11vw, 4.5rem); }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 380px) {
+      .hero-title { font-size: 3rem; }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       MOBILE NAV OVERLAY
+    ═══════════════════════════════════════════════════════ */
+    #mobile-nav {
+      position: fixed; inset: 0; z-index: 990;
+      background: rgba(8,8,18,0.97); backdrop-filter: blur(20px);
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+    }
+    #mobile-nav.open { display: flex; }
+    .mobile-nav-link {
+      font-family: var(--font-display); font-size: 2.8rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #fff; text-decoration: none; transition: color 0.3s;
+    }
+    .mobile-nav-link:hover { color: var(--magenta); }
+    .mobile-nav-book {
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--void); background: var(--magenta);
+      padding: 1rem 3rem; text-decoration: none; margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .mobile-nav-book:hover { background: var(--violet); }
+
+    /* Neon borders utility */
+    .neon-border-violet { border: 1px solid rgba(139,0,255,0.3); box-shadow: 0 0 20px rgba(139,0,255,0.1); }
+    .neon-border-magenta { border: 1px solid rgba(255,0,170,0.3); box-shadow: 0 0 20px rgba(255,0,170,0.1); }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9990; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor dots (desktop only — hidden on mobile via CSS) -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo">Juliette <span>Angelini</span></a>
+
+  <ul class="nav-links">
+    <li><a href="#sound">Sound</a></li>
+    <li><a href="#bio">Story</a></li>
+    <li><a href="#events">Live</a></li>
+    <li><a href="#bookers">Bookings</a></li>
+    <li><a href="#label">Label</a></li>
+    <li><a href="#connect">Contact</a></li>
+  </ul>
+
+  <a href="#book" class="nav-book-btn">Book Now</a>
+
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav Overlay -->
+<div id="mobile-nav" role="dialog" aria-label="Mobile navigation">
+  <a href="#sound"    class="mobile-nav-link" onclick="closeMobileNav()">Sound</a>
+  <a href="#bio"      class="mobile-nav-link" onclick="closeMobileNav()">Story</a>
+  <a href="#events"   class="mobile-nav-link" onclick="closeMobileNav()">Live</a>
+  <a href="#bookers"  class="mobile-nav-link" onclick="closeMobileNav()">Bookings</a>
+  <a href="#connect"  class="mobile-nav-link" onclick="closeMobileNav()">Contact</a>
+  <a href="#book"     class="mobile-nav-book" onclick="closeMobileNav()">Book Now ✦</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     HERO — Only one CTA: Book Now
+═══════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Sound of God Recordings ✦ Italian Psytrance Sovereignty</p>
+    <h1 class="hero-title">
+      <span class="line-1">Juliette</span>
+      <span class="line-2">Angelini</span>
+    </h1>
+    <p class="hero-subtitle">
+      Italian-born. Cosmically summoned. Psytrance's most electrifying new force—<br>
+      where ancient Italian soul collides with the frequencies of the universe.
+    </p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn-primary magenta">Book Now</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SIGNATURE SOUND + Yehosua Himself player
+═══════════════════════════════════════════════════ -->
+<section id="sound" aria-label="Signature Sound">
+  <div class="sound-container">
+    <p class="section-label reveal">The Signature Sound</p>
+    <h2 class="section-title reveal">
+      Raw. Sacred.<br>Unstoppable.
+    </h2>
+    <p class="section-intro reveal" style="margin-top:1.2rem;">
+      Juliette's sets move between thunderous psychedelic basslines and transcendent celestial arcs—
+      every track a rite of passage, every mix a ceremony.
+    </p>
+
+    <div class="sound-grid">
+      <!-- Track Card 1 -->
+      <div class="sound-card reveal">
+        <div class="sound-card-num">01</div>
+        <div class="sound-card-title">Codice Cosmico</div>
+        <span class="sound-card-label">Original Track — Sound of God Recordings</span>
+        <div class="visualizer" aria-hidden="true">
+          <div class="vis-bar" style="--dur:0.6s;--min:0.1;--max:0.9;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.3;--max:0.7;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.5s;--min:0.2;--max:1.0;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.9s;--min:0.1;--max:0.8;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.4;--max:0.9;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.55s;--min:0.2;--max:1.0;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.1;--max:0.6;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.65s;--min:0.3;--max:0.9;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.75s;--min:0.15;--max:0.85;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.9s;--min:0.2;--max:0.7;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.1;--max:1.0;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.3;--max:0.8;background:var(--magenta)"></div>
+        </div>
+        <!-- Yehosua Himself SoundCloud track -->
+        <div class="sc-player-wrap">
+          <iframe
+            scrolling="no"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yehosuahimself&color=%238b00ff&inverse=true&auto_play=false&show_user=false&show_artwork=false&show_comments=false&show_playcount=false&sharing=false&buying=false"
+            height="80" width="100%"
+            style="border:none;background:transparent;"
+            loading="lazy"
+            title="Juliette Angelini - Codice Cosmico"
+            aria-label="Music player">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Track Card 2 -->
+      <div class="sound-card reveal">
+        <div class="sound-card-num">02</div>
+        <div class="sound-card-title">Nebula Rising — Live at Luminara</div>
+        <span class="sound-card-label">Live DJ Set — Full Energy</span>
+        <div class="visualizer" aria-hidden="true">
+          <div class="vis-bar" style="--dur:0.7s;--min:0.2;--max:0.95;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.5s;--min:0.1;--max:0.8;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.85s;--min:0.3;--max:1.0;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.65s;--min:0.2;--max:0.7;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.9s;--min:0.4;--max:0.9;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.1;--max:1.0;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.75s;--min:0.2;--max:0.85;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.55s;--min:0.3;--max:0.8;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.15;--max:0.9;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.2;--max:0.7;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.1;--max:1.0;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.3;--max:0.85;background:var(--violet)"></div>
+        </div>
+        <div class="sc-player-wrap">
+          <iframe
+            scrolling="no"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yehosuahimself&color=%2300f0ff&inverse=true&auto_play=false&show_user=false&show_artwork=false&show_comments=false&show_playcount=false&sharing=false&buying=false"
+            height="80" width="100%"
+            style="border:none;background:transparent;"
+            loading="lazy"
+            title="Juliette Angelini - Nebula Rising Live Set"
+            aria-label="Music player">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Track Card 3 -->
+      <div class="sound-card reveal">
+        <div class="sound-card-num">03</div>
+        <div class="sound-card-title">Portale di Firenze</div>
+        <span class="sound-card-label">Original EP Track — 147 BPM Psy-Techno</span>
+        <div class="visualizer" aria-hidden="true">
+          <div class="vis-bar" style="--dur:0.5s;--min:0.3;--max:1.0;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.1;--max:0.85;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.2;--max:0.9;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.85s;--min:0.15;--max:0.7;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.55s;--min:0.4;--max:1.0;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.2;--max:0.8;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.65s;--min:0.1;--max:0.95;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.75s;--min:0.3;--max:0.75;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.2;--max:1.0;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.9s;--min:0.1;--max:0.85;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.25;--max:0.9;background:var(--gold)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.3;--max:0.8;background:var(--violet)"></div>
+        </div>
+        <div class="sc-player-wrap">
+          <iframe
+            scrolling="no"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yehosuahimself&color=%23f5c400&inverse=true&auto_play=false&show_user=false&show_artwork=false&show_comments=false&show_playcount=false&sharing=false&buying=false"
+            height="80" width="100%"
+            style="border:none;background:transparent;"
+            loading="lazy"
+            title="Juliette Angelini - Portale di Firenze"
+            aria-label="Music player">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Track Card 4 -->
+      <div class="sound-card reveal">
+        <div class="sound-card-num">04</div>
+        <div class="sound-card-title">Sanctum Frequencies Mix</div>
+        <span class="sound-card-label">Monthly Radio Show — Episode 12</span>
+        <div class="visualizer" aria-hidden="true">
+          <div class="vis-bar" style="--dur:0.8s;--min:0.1;--max:0.7;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.25;--max:0.95;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.75s;--min:0.2;--max:0.85;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.55s;--min:0.3;--max:1.0;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.9s;--min:0.15;--max:0.8;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.65s;--min:0.1;--max:0.9;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.8s;--min:0.3;--max:0.75;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.2;--max:1.0;background:var(--cyan)"></div>
+          <div class="vis-bar" style="--dur:0.6s;--min:0.1;--max:0.85;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.85s;--min:0.25;--max:0.7;background:var(--violet)"></div>
+          <div class="vis-bar" style="--dur:0.7s;--min:0.2;--max:0.9;background:var(--magenta)"></div>
+          <div class="vis-bar" style="--dur:0.75s;--min:0.15;--max:0.85;background:var(--cyan)"></div>
+        </div>
+        <div class="sc-player-wrap">
+          <iframe
+            scrolling="no"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/yehosuahimself&color=%23ff00aa&inverse=true&auto_play=false&show_user=false&show_artwork=false&show_comments=false&show_playcount=false&sharing=false&buying=false"
+            height="80" width="100%"
+            style="border:none;background:transparent;"
+            loading="lazy"
+            title="Juliette Angelini - Sanctum Frequencies Mix Episode 12"
+            aria-label="Music player">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     HER STORY / BIO
+═══════════════════════════════════════════════════ -->
+<section id="bio" aria-label="Her Story">
+  <div class="bio-inner">
+    <div class="reveal-left">
+      <div class="bio-img-wrap">
+        <!-- Cinematic outdoor festival DJ shot -->
+        <img
+          src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=900&q=90"
+          alt="Juliette Angelini performing at outdoor festival"
+          class="bio-img" loading="lazy" width="600" height="800"
+        />
+        <div class="bio-img-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="bio-stat">
+        <div class="stat-item">
+          <div class="stat-num">80+</div>
+          <span class="stat-label">Shows in 2025</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">35+</div>
+          <span class="stat-label">Countries</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">147</div>
+          <span class="stat-label">Avg BPM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-text-col reveal-right">
+      <span class="section-label">Her Story</span>
+      <h2 class="section-title" style="margin-bottom:2rem;">
+        Born in Tuscany.<br>
+        <span class="glow-magenta" style="color:var(--magenta);">Summoned by</span><br>
+        the Cosmos.
+      </h2>
+
+      <p class="bio-text">
+        Raised in the terracotta-dusted hills of <em>Tuscany</em>, Juliette Angelini heard frequencies
+        others couldn't. The ancient Italian earth hummed beneath her childhood; Renaissance cathedrals
+        reverberated through her bones. Then she found Psytrance—and everything clicked into place.
+      </p>
+      <p class="bio-text">
+        A decade of underground dedication later, she now stands as one of electronic music's most
+        magnetic forces: raw, spiritual, technically ferocious, and unapologetically <em>feminine</em>.
+        No genre plays games with consciousness quite like hers.
+      </p>
+      <p class="bio-text">
+        Her signing to <em>Sound of God Recordings</em>—the visionary label of Psytechno legend
+        YEHOSUA HIMSELF—was the industry's worst-kept secret. Now fully unleashed, Juliette is
+        redefining what a psytrance DJ can be, and can mean.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2016</div>
+          <div class="timeline-desc">First underground set in Florence. Zero followers. Maximum frequency.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-desc">Luminar Terra debut. Thunderous response. International radar awakened.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-desc">First original release. <em>Portale di Firenze</em> — 500k plays in 30 days.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-desc">Hypnotic Fields, Solstice Spiral, Waking Life. Every set a legend.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-desc">Signs to Sound of God Recordings. The era begins.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     CINEMATIC REEL
+═══════════════════════════════════════════════════ -->
+<section id="reel" aria-label="Cinematic Reel">
+  <canvas id="reel-canvas" aria-hidden="true"></canvas>
+  <div class="reel-bg" aria-hidden="true"></div>
+  <div class="reel-overlay" aria-hidden="true"></div>
+  <div class="reel-content">
+    <h2 class="reel-title glow-violet">
+      Feel the<br>
+      <span style="color:var(--magenta)">Frequency</span>
+    </h2>
+    <p class="section-intro" style="color:rgba(255,255,255,0.65);max-width:500px;text-align:center;">
+      Three continents. Thousands of souls. One unstoppable Italian force.
+    </p>
+    <a href="#book" class="btn-primary magenta" style="margin-top:2rem;">Book Her Now →</a>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     GALLERY — Cinematic outdoor psytrance photography
+═══════════════════════════════════════════════════ -->
+<section id="gallery" aria-label="Photo Gallery">
+  <div class="gallery-container">
+    <span class="section-label reveal">Visual Frequencies</span>
+    <h2 class="section-title reveal">The Journey<br>in Frames</h2>
+
+    <div class="gallery-grid" role="list">
+      <!-- Outdoor psytrance festival — cinematic, real-feeling -->
+      <div class="gallery-item gi-1 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 1">
+        <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=900&q=85"
+             alt="DJ at outdoor stage with crowd under open sky at sunset" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-2 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 2">
+        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=700&q=85"
+             alt="Massive festival crowd hands raised at outdoor stage" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-3 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 3">
+        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=85"
+             alt="Lasers at night outdoor festival stage" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-4 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 4">
+        <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=700&q=85"
+             alt="Outdoor dancefloor under forest canopy and festival lights" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-5 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 5">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=85"
+             alt="Crowd silhouettes against neon stage lighting at night" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-6 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 6">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=700&q=85"
+             alt="Aerial view of outdoor festival stage and crowd" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-7 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 7">
+        <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=700&q=85"
+             alt="Stage lights cutting through smoke at outdoor festival" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-8 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 8">
+        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=700&q=85"
+             alt="Photographer's perspective of outdoor psytrance crowd" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-9 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 9">
+        <img src="https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=700&q=85"
+             alt="Festival tent stage with natural light and crowd" loading="lazy" />
+      </div>
+      <div class="gallery-item gi-10 reveal-scale" role="listitem" tabindex="0"
+           onclick="openLightbox(this)" aria-label="Gallery photo 10">
+        <img src="https://images.unsplash.com/photo-1571079520814-c2840ce6ec7b?w=700&q=85"
+             alt="DJ performance with deep atmospheric lighting" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-label="Image lightbox" aria-modal="true">
+  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">✕</button>
+  <img id="lightbox-img" src="" alt="Gallery image fullscreen" />
+</div>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SOUND OF GOD RECORDINGS
+═══════════════════════════════════════════════════ -->
+<section id="label" aria-label="Sound of God Recordings">
+  <div class="label-bg-glyph" aria-hidden="true">SOG</div>
+  <div class="label-container">
+    <div class="reveal-left">
+      <div class="label-logo-wrap">
+        <div class="label-logo-icon">
+          <svg viewBox="0 0 30 30" fill="none" stroke="#f5c400" stroke-width="1.5">
+            <circle cx="15" cy="15" r="12"/>
+            <path d="M10 15 Q15 8 20 15 Q15 22 10 15Z" fill="#f5c400" opacity="0.6"/>
+            <circle cx="15" cy="15" r="3" fill="#f5c400"/>
+          </svg>
+        </div>
+        <div>
+          <div class="label-name">Sound of God Recordings</div>
+          <span class="label-sub">Psytrance · Psy-Techno · Sacred Frequencies</span>
+        </div>
+      </div>
+
+      <p class="label-desc">
+        Founded by the visionary Psytechno legend <strong style="color:var(--gold);">YEHOSUA HIMSELF</strong>,
+        Sound of God Recordings is not a label. It is a frequency institution—a sacred space
+        where the most authentic psychedelic electronic artists are elevated to their divine potential.
+      </p>
+      <p class="label-desc">
+        Juliette Angelini is the label's newest and most explosive signing—a perfect fusion
+        of the label's sonic philosophy and the raw Italian underground fire
+        that has been building across Europe for years.
+      </p>
+      <a href="https://yehosuahimself.netlify.app/" target="_blank" rel="noopener noreferrer"
+         class="btn-primary violet" style="display:inline-block;margin-top:1rem;">
+        Visit the Label →
+      </a>
+    </div>
+
+    <div class="reveal-right">
+      <span class="section-label">The Roster</span>
+      <h3 style="font-family:var(--font-display);font-size:2.5rem;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:2rem;letter-spacing:0.04em;">
+        Where Gods Play
+      </h3>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:rgba(245,196,0,0.1);">
+        <div style="background:var(--void);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;transition:background 0.3s;" onmouseover="this.style.background='rgba(245,196,0,0.04)'" onmouseout="this.style.background='var(--void)'">
+          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--magenta));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.8rem;font-weight:700;color:var(--void);">YH</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;">YEHOSUA HIMSELF</div>
+            <div style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;">Founder · Psytechno Legend</div>
+          </div>
+        </div>
+        <div style="background:var(--void);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;transition:background 0.3s;" onmouseover="this.style.background='rgba(139,0,255,0.04)'" onmouseout="this.style.background='var(--void)'">
+          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--magenta),var(--violet));flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.8rem;font-weight:700;color:#fff;">JA</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;">JULIETTE ANGELINI</div>
+            <div style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.15em;color:var(--magenta);text-transform:uppercase;">Artist · Italian Psytrance Sovereignty</div>
+          </div>
+        </div>
+        <div style="background:var(--void);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;opacity:0.4;">
+          <div style="width:40px;height:40px;border-radius:50%;border:1px dashed rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:rgba(255,255,255,0.3);">?</div>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);">Next Soul — Coming Soon</div>
+            <div style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);">The Frequency Calls</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     EVENTS / LIVE — Fictive but real-sounding
+═══════════════════════════════════════════════════ -->
+<section id="events" aria-label="Live Events">
+  <div class="events-container">
+    <span class="section-label reveal">Live Frequencies</span>
+    <h2 class="section-title reveal">2026 Tour</h2>
+    <p class="section-intro reveal" style="margin-top:1.2rem;">
+      Juliette's live presence is an act of transmission. Find your nearest portal.
+    </p>
+
+    <div class="events-list" aria-label="Upcoming events">
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">18</div>
+          <div class="event-date-month">Apr</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Luminar Terra Festival</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Pilis Mountains, Hungary
+          </div>
+        </div>
+        <span class="event-tag">Psytrance</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">03</div>
+          <div class="event-date-month">May</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Resonance Gathering</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Alentejo Plains, Portugal
+          </div>
+        </div>
+        <span class="event-tag">Psy-Techno</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">21</div>
+          <div class="event-date-month">May</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Solstice Spiral</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Aragon Valley, Spain
+          </div>
+        </div>
+        <span class="event-tag">Festival</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">14</div>
+          <div class="event-date-month">Jun</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Hypnotic Fields</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bahia Coastline, Brazil
+          </div>
+        </div>
+        <span class="event-tag">Psytrance</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">09</div>
+          <div class="event-date-month">Jul</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Eclipse Grounds</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rajasthan Desert, India
+          </div>
+        </div>
+        <span class="event-tag">Psy-Techno</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+
+      <div class="event-row reveal">
+        <div class="event-date">
+          <div class="event-date-day">27</div>
+          <div class="event-date-month">Sep</div>
+        </div>
+        <div class="event-info">
+          <div class="event-name">Frequenza Sacra</div>
+          <div class="event-location">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Friuli Hills, Italy
+          </div>
+        </div>
+        <span class="event-tag">Homecoming</span>
+        <a href="#book" class="event-ticket-btn">Book Her →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     FOR BOOKERS & INDUSTRY (EPK)
+═══════════════════════════════════════════════════ -->
+<section id="bookers" aria-label="For Bookers and Industry">
+  <div class="bookers-container">
+    <span class="section-label reveal">For Bookers & Industry</span>
+    <h2 class="section-title reveal">The Professional<br>Package</h2>
+
+    <div class="bookers-grid">
+      <div class="booker-card reveal">
+        <div class="booker-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <div class="booker-card-title">Technical Rider</div>
+        <div class="booker-card-text">
+          Pioneer CDJ-3000 / Nexus 2000 (preferred), DJM-900NXS2 or equivalent mixer,
+          full stage monitor, dedicated power feed. Rider available on request.
+          Juliette travels with USB + Serato Backup.
+        </div>
+      </div>
+
+      <div class="booker-card reveal">
+        <div class="booker-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="booker-card-title">Availability</div>
+        <div class="booker-card-text">
+          Booking enquiries via the form below. Lead time: minimum 6 weeks for club bookings,
+          3 months for festivals. Juliette tours globally — Europe, South America, Asia, Australia.
+          Managed exclusively by Sound of God Recordings.
+        </div>
+      </div>
+
+      <div class="booker-card reveal">
+        <div class="booker-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="booker-card-title">Past Bookings</div>
+        <div class="booker-card-text">
+          Luminar Terra · Resonance Gathering · Solstice Spiral · Hypnotic Fields ·
+          Eclipse Grounds · Frequenza Sacra · Antaris Project · Connection Festival ·
+          Club sets across Berlin, London, Barcelona, Tel Aviv, São Paulo.
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="#" class="epk-download reveal" download aria-label="Download Electronic Press Kit">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download Full Press Kit (EPK)
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     BOOK YOUR DATE — Optimized booking section as final CTA
+═══════════════════════════════════════════════════ -->
+<section id="book" aria-label="Booking Request">
+  <div class="fractal-bg" aria-hidden="true"></div>
+  <div class="book-container">
+    <span class="book-hero-label reveal">✦ Book Juliette Angelini</span>
+    <h2 class="book-hero-title reveal">Bring the<br>Frequency<br>to You</h2>
+    <p class="book-hero-sub reveal">
+      Tell us about your event. Managed by Sound of God Recordings —
+      all enquiries answered within 48 hours.
+    </p>
+
+    <div class="book-urgency reveal">
+      <div class="book-urgency-dot"></div>
+      <span>Calendar filling fast — limited festival slots remaining for 2026</span>
+    </div>
+
+    <form class="book-form reveal" id="booking-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="book-name">Your Name *</label>
+        <input class="form-input" type="text" id="book-name" name="name" placeholder="Jane Smith" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="book-email">Email Address *</label>
+        <input class="form-input" type="email" id="book-email" name="email" placeholder="bookings@venue.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="book-venue">Venue / Event Name *</label>
+        <input class="form-input" type="text" id="book-venue" name="venue" placeholder="Hypnotic Fields Festival" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="book-date">Event Date *</label>
+        <input class="form-input" type="date" id="book-date" name="date" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="book-location">Location / Country *</label>
+        <input class="form-input" type="text" id="book-location" name="location" placeholder="Berlin, Germany" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="book-type">Event Type</label>
+        <select class="form-select" id="book-type" name="type">
+          <option value="">Select type…</option>
+          <option value="festival">Festival</option>
+          <option value="club">Club Night</option>
+          <option value="private">Private Event</option>
+          <option value="live">Live Showcase</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="book-message">Additional Details</label>
+        <textarea class="form-textarea" id="book-message" name="message"
+          placeholder="Expected capacity, stage setup, budget range, special requirements…"></textarea>
+      </div>
+      <button type="submit" class="form-submit">
+        Send Booking Request ✦
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Booking Confirmation Modal -->
+<div id="booking-modal" role="dialog" aria-modal="true" aria-label="Booking request confirmation">
+  <div class="modal-inner">
+    <div class="modal-glyph">✦</div>
+    <div class="modal-title">Frequency Received</div>
+    <p class="modal-text">
+      Your booking request has been transmitted to the Sound of God Recordings team.
+      We'll respond within 48 hours at your provided email. The frequency is already in motion.
+    </p>
+    <button class="modal-close" onclick="closeBookingModal()">Close ✕</button>
+  </div>
+</div>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════ -->
+<section id="testimonials" aria-label="Testimonials">
+  <div class="test-container">
+    <span class="section-label reveal">Resonance</span>
+    <h2 class="section-title reveal">What the<br>World Says</h2>
+
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <p class="test-quote">
+          In 20 years of booking DJs, I have never seen a crowd react like that.
+          She doesn't just play music — she activates something. She's the future
+          of the genre and we'll be booking her every year without question.
+        </p>
+        <div class="test-author">Marcello Ferrante</div>
+        <div class="test-role">Festival Director, Frequenza Sacra Italy</div>
+      </div>
+
+      <div class="test-card reveal">
+        <p class="test-quote">
+          Juliette's technical precision is extraordinary — her mixing is architectural.
+          But what separates her is the spiritual intelligence behind every selection.
+          This is sacred work dressed as electronic music.
+        </p>
+        <div class="test-author">YEHOSUA HIMSELF</div>
+        <div class="test-role">Founder, Sound of God Recordings</div>
+      </div>
+
+      <div class="test-card reveal">
+        <p class="test-quote">
+          We've booked the biggest names in Psytrance but Juliette's set at Resonance Gathering
+          left people talking for three days. Italian fire, cosmic precision. She is absolutely
+          one to watch — correction: one to book immediately.
+        </p>
+        <div class="test-author">Susana Meireles</div>
+        <div class="test-role">Head of Booking, Resonance Gathering Portugal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     CONNECT
+═══════════════════════════════════════════════════ -->
+<section id="connect" aria-label="Connect">
+  <div class="connect-container">
+    <div class="reveal-left">
+      <span class="section-label">Connect</span>
+      <h2 class="section-title">Enter the<br>Circle</h2>
+      <p class="section-intro" style="margin-top:1.2rem;">
+        For press, media, collaboration, and all other enquiries—
+        the frequency is open.
+      </p>
+
+      <div style="margin-top:2rem;">
+        <div style="margin-bottom:0.5rem;font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.35);">Booking & Management</div>
+        <a href="mailto:booking@julietteangelini.com" style="font-family:var(--font-serif);font-size:1.15rem;color:var(--magenta);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--magenta)'">
+          booking@julietteangelini.com
+        </a>
+      </div>
+
+      <nav class="social-links" aria-label="Social media links">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          Instagram / @julietteangelini
+        </a>
+        <a href="https://soundcloud.com/yehosuahimself" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="SoundCloud">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M11.56 8.87V17h8.76c.96 0 1.68-.61 1.68-1.57 0-.78-.54-1.44-1.3-1.57v-.1c0-1.32-1.06-2.4-2.38-2.4-.28 0-.54.05-.78.14-.3-1.4-1.54-2.44-3-2.44-.43 0-.84.09-1.21.25zM0 15.5C0 16.88 1.12 18 2.5 18S5 16.88 5 15.5v-4C5 10.12 3.88 9 2.5 9S0 10.12 0 11.5v4zM6 15.5C6 16.88 7.12 18 8.5 18S11 16.88 11 15.5V8c0-1.38-1.12-2.5-2.5-2.5S6 6.62 6 8v7.5z"/>
+          </svg>
+          SoundCloud / Juliette Angelini
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+          Facebook / Juliette Angelini Official
+        </a>
+        <a href="https://ra.co" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Resident Advisor">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          </svg>
+          Resident Advisor / Profile
+        </a>
+      </nav>
+    </div>
+
+    <div class="reveal-right">
+      <form style="display:flex;flex-direction:column;gap:1.2rem;" onsubmit="handleContactForm(event)">
+        <div class="form-group">
+          <label class="form-label" for="contact-name">Name</label>
+          <input class="form-input" type="text" id="contact-name" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-email">Email</label>
+          <input class="form-input" type="email" id="contact-email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-subject">Subject</label>
+          <select class="form-select" id="contact-subject">
+            <option value="">Select…</option>
+            <option>Press / Media Enquiry</option>
+            <option>Booking Request</option>
+            <option>Collaboration</option>
+            <option>Label Enquiry</option>
+            <option>Fan Message</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-msg">Message</label>
+          <textarea class="form-textarea" id="contact-msg" style="min-height:120px;" placeholder="Your message…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary magenta" style="border:none;width:100%;padding:1rem;font-family:var(--font-sans);font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;font-weight:600;cursor:pointer;">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="freq-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     FINAL — Book Now CTA (no subscribe)
+═══════════════════════════════════════════════════ -->
+<section id="final" aria-label="Final Frequency">
+  <canvas id="final-canvas" width="100%" height="100%" aria-hidden="true"></canvas>
+  <div class="final-content" style="padding:0 2rem;">
+    <p style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;">
+      Sound of God Recordings
+    </p>
+    <h2 class="final-title">
+      <span>The Sound</span><br>
+      of God<br>
+      Is Here.
+    </h2>
+    <p class="final-sub">
+      Juliette Angelini — Italian Psytrance Sovereignty — Sound of God Recordings.
+    </p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#book" class="btn-primary magenta" style="min-width:220px;text-align:center;padding:1.2rem 2.5rem;">Book Now ✦</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer-logo">Juliette <span>Angelini</span></div>
+  <ul class="footer-links">
+    <li><a href="#sound">Sound</a></li>
+    <li><a href="#bio">Story</a></li>
+    <li><a href="#events">Live</a></li>
+    <li><a href="#bookers">Bookers</a></li>
+    <li><a href="#label">Label</a></li>
+    <li><a href="https://yehosuahimself.netlify.app/" target="_blank" rel="noopener noreferrer">Sound of God Records</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Juliette Angelini. All rights reserved. Sound of God Recordings.</p>
+  <p class="footer-echo">All Frequencies — All Dates — All Dimensions</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════
+     AMBIENT AUDIO TOGGLE (plays Yehosua Himself track)
+═══════════════════════════════════════════════════ -->
+<button id="ambient-toggle" aria-label="Toggle ambient soundscape">
+  <div class="ambient-pulse" aria-hidden="true"></div>
+  <svg id="ambient-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+  </svg>
+</button>
+
+<!-- Language Toggle -->
+<div id="lang-toggle" role="group" aria-label="Language selection">
+  <button class="lang-btn active" onclick="setLang('en')" aria-pressed="true">EN</button>
+  <button class="lang-btn" onclick="setLang('it')" aria-pressed="false">IT</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════ -->
+<script>
+/* ═══════════════════════════════════════
+   1. LENIS SMOOTH SCROLL
+═══════════════════════════════════════ */
+const lenis = new Lenis({
+  duration: 1.4,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: false,
+});
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+gsap.ticker.add(time => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
+
+/* ═══════════════════════════════════════
+   2. CUSTOM CURSOR (desktop only)
+═══════════════════════════════════════ */
+const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+if (!isTouchDevice) {
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    gsap.set(cursor, { x: mouseX, y: mouseY });
+  });
+  (function animateCursorRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    gsap.set(cursorRing, { x: ringX, y: ringY });
+    requestAnimationFrame(animateCursorRing);
+  })();
+
+  document.querySelectorAll('a, button, [tabindex="0"]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      gsap.to(cursor, { scale: 2.5, duration: 0.3 });
+      gsap.to(cursorRing, { scale: 1.5, borderColor: 'rgba(255,0,170,0.7)', duration: 0.3 });
+    });
+    el.addEventListener('mouseleave', () => {
+      gsap.to(cursor, { scale: 1, duration: 0.3 });
+      gsap.to(cursorRing, { scale: 1, borderColor: 'rgba(0,240,255,0.5)', duration: 0.3 });
+    });
+  });
+}
+
+/* ═══════════════════════════════════════
+   3. NAV SCROLL EFFECT
+═══════════════════════════════════════ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+/* ═══════════════════════════════════════
+   4. MOBILE NAV
+═══════════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+let mobileNavOpen = false;
+hamburger.addEventListener('click', () => {
+  mobileNavOpen = !mobileNavOpen;
+  mobileNav.classList.toggle('open', mobileNavOpen);
+  document.body.style.overflow = mobileNavOpen ? 'hidden' : '';
+});
+function closeMobileNav() {
+  mobileNavOpen = false;
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ═══════════════════════════════════════
+   5. THREE.JS HERO PARTICLE UNIVERSE
+═══════════════════════════════════════ */
+(function initHeroThreeJS() {
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
+
+  const particleCount = isTouchDevice ? 1200 : 2500;
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+  const palette = [
+    new THREE.Color('#8b00ff'), new THREE.Color('#ff00aa'),
+    new THREE.Color('#00f0ff'), new THREE.Color('#f5c400'), new THREE.Color('#ffffff'),
+  ];
+
+  for (let i = 0; i < particleCount; i++) {
+    const r = 3 + Math.random() * 7;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos((Math.random() * 2) - 1);
+    positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+    positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+    positions[i*3+2] = (Math.random() - 0.5) * 10;
+    const col = palette[Math.floor(Math.random() * palette.length)];
+    colors[i*3] = col.r; colors[i*3+1] = col.g; colors[i*3+2] = col.b;
+  }
+
+  const particleGeo = new THREE.BufferGeometry();
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const particleMat = new THREE.PointsMaterial({
+    size: 0.04, vertexColors: true, transparent: true, opacity: 0.75,
+    blending: THREE.AdditiveBlending, depthWrite: false,
+  });
+  const particles = new THREE.Points(particleGeo, particleMat);
+  scene.add(particles);
+
+  const orbGeo = new THREE.IcosahedronGeometry(0.8, 4);
+  const orbMat = new THREE.MeshBasicMaterial({ color: 0x8b00ff, wireframe: true, transparent: true, opacity: 0.3 });
+  const orb = new THREE.Mesh(orbGeo, orbMat);
+  scene.add(orb);
+
+  const glowGeo = new THREE.SphereGeometry(0.55, 32, 32);
+  const glowMat = new THREE.MeshBasicMaterial({ color: 0xff00aa, transparent: true, opacity: 0.12 });
+  const glowSphere = new THREE.Mesh(glowGeo, glowMat);
+  scene.add(glowSphere);
+
+  const rings = [];
+  for (let i = 0; i < 5; i++) {
+    const ringGeo = new THREE.RingGeometry(1 + i * 0.6, 1.02 + i * 0.6, 64);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: i % 2 === 0 ? 0x8b00ff : 0xff00aa,
+      side: THREE.DoubleSide, transparent: true, opacity: 0.15 - i * 0.025,
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2;
+    ring.userData.phase = i * (Math.PI * 0.4);
+    scene.add(ring); rings.push(ring);
+  }
+
+  let mouseParallaxX = 0, mouseParallaxY = 0;
+  if (!isTouchDevice) {
+    document.addEventListener('mousemove', e => {
+      mouseParallaxX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseParallaxY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  let clock = new THREE.Clock();
+  function animateHero() {
+    requestAnimationFrame(animateHero);
+    const t = clock.getElapsedTime();
+    particles.rotation.y = t * 0.04; particles.rotation.x = t * 0.015;
+    orb.rotation.x = t * 0.3; orb.rotation.y = t * 0.5; orb.rotation.z = t * 0.2;
+    const pulse = 1 + Math.sin(t * 2) * 0.08;
+    orb.scale.setScalar(pulse); glowSphere.scale.setScalar(pulse * 1.05);
+    rings.forEach((ring, i) => {
+      const s = 1 + Math.sin(t * 1.2 + ring.userData.phase) * 0.12;
+      ring.scale.setScalar(s);
+      ring.material.opacity = (0.15 - i * 0.025) * (0.7 + Math.sin(t + ring.userData.phase) * 0.3);
+    });
+    camera.position.x += (mouseParallaxX * 0.4 - camera.position.x) * 0.03;
+    camera.position.y += (-mouseParallaxY * 0.3 - camera.position.y) * 0.03;
+    renderer.render(scene, camera);
+  }
+  animateHero();
+})();
+
+/* ═══════════════════════════════════════
+   6. GSAP SCROLL ANIMATIONS
+═══════════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+gsap.timeline()
+  .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 })
+  .to('.hero-title',   { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+  .to('.hero-subtitle',{ opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+  .to('.hero-ctas',    { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+  .to('.scroll-indicator', { opacity: 1, duration: 0.8 }, '-=0.3');
+
+// Reveal on scroll
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+  });
+});
+gsap.utils.toArray('.reveal-left').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+  });
+});
+gsap.utils.toArray('.reveal-right').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+  });
+});
+gsap.utils.toArray('.reveal-scale').forEach((el, i) => {
+  gsap.to(el, {
+    opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out',
+    delay: (i % 3) * 0.1,
+    scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+  });
+});
+
+// Parallax on reel bg
+gsap.to('.reel-bg', {
+  yPercent: 20,
+  ease: 'none',
+  scrollTrigger: { trigger: '#reel', start: 'top bottom', end: 'bottom top', scrub: true }
+});
+
+// Freq dividers
+gsap.utils.toArray('.freq-divider').forEach(el => {
+  gsap.fromTo(el,
+    { scaleX: 0, opacity: 0 },
+    { scaleX: 1, opacity: 1, duration: 1.5, ease: 'power3.inOut',
+      scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none none' } }
+  );
+});
+
+/* ═══════════════════════════════════════
+   7. REEL CANVAS — Frequency wave lines
+═══════════════════════════════════════ */
+(function initReelCanvas() {
+  const canvas = document.getElementById('reel-canvas');
+  canvas.width = window.innerWidth; canvas.height = canvas.offsetHeight;
+  const ctx = canvas.getContext('2d');
+  const waves = [
+    { color: '#8b00ff', freq: 0.02, amp: 30, speed: 0.8, phase: 0 },
+    { color: '#ff00aa', freq: 0.03, amp: 20, speed: 1.2, phase: 1 },
+    { color: '#00f0ff', freq: 0.015, amp: 40, speed: 0.5, phase: 2 },
+  ];
+  function drawReelWaves(t) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    waves.forEach(w => {
+      ctx.beginPath();
+      ctx.strokeStyle = w.color;
+      ctx.lineWidth = 1.5;
+      ctx.globalAlpha = 0.5;
+      for (let x = 0; x <= canvas.width; x += 2) {
+        const y = canvas.height / 2 + Math.sin(x * w.freq + t * w.speed + w.phase) * w.amp;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(() => drawReelWaves(t + 0.02));
+  }
+  drawReelWaves(0);
+  window.addEventListener('resize', () => { canvas.width = window.innerWidth; });
+})();
+
+/* ═══════════════════════════════════════
+   8. FINAL CANVAS — Particle burst
+═══════════════════════════════════════ */
+(function initFinalCanvas() {
+  const canvas = document.getElementById('final-canvas');
+  const section = document.getElementById('final');
+  function resize() { canvas.width = section.offsetWidth; canvas.height = section.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const ctx = canvas.getContext('2d');
+  const pts = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+    r: Math.random() * 2 + 0.5,
+    c: ['#8b00ff','#ff00aa','#00f0ff','#f5c400'][Math.floor(Math.random()*4)]
+  }));
+  function drawFinal() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c; ctx.globalAlpha = 0.5; ctx.fill(); ctx.globalAlpha = 1;
+    });
+    requestAnimationFrame(drawFinal);
+  }
+  drawFinal();
+})();
+
+/* ═══════════════════════════════════════
+   9. LIGHTBOX
+═══════════════════════════════════════ */
+function openLightbox(container) {
+  const img = container.querySelector('img');
+  if (!img) return;
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  lbImg.src = img.src; lbImg.alt = img.alt;
+  lb.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(item); }
+  });
+});
+
+/* ═══════════════════════════════════════
+   10. BOOKING FORM
+═══════════════════════════════════════ */
+document.getElementById('booking-form').addEventListener('submit', e => {
+  e.preventDefault(); openBookingModal();
+});
+function openBookingModal() {
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBookingModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('booking-form').reset();
+}
+
+/* ═══════════════════════════════════════
+   11. CONTACT FORM
+═══════════════════════════════════════ */
+function handleContactForm(e) {
+  e.preventDefault();
+  alert("Message sent! We'll be in touch within 48 hours. ✦");
+  e.target.reset();
+}
+
+/* ═══════════════════════════════════════
+   12. AMBIENT AUDIO — plays Yehosua Himself track
+═══════════════════════════════════════ */
+let ambientCtx = null;
+let ambientNodes = [];
+let ambientActive = false;
+// We load a SoundCloud track from Yehosua Himself via SC Widget API
+// The ambient toggle plays the SC iframe player for track 1
+document.getElementById('ambient-toggle').addEventListener('click', () => {
+  ambientActive = !ambientActive;
+
+  // Target the first SoundCloud iframe and control it via SC Widget
+  const iframe = document.querySelector('.sc-player-wrap iframe');
+  if (iframe) {
+    const widget = SC.Widget(iframe);
+    if (ambientActive) {
+      widget.play();
+      document.getElementById('ambient-icon').innerHTML = `
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>`;
+    } else {
+      widget.pause();
+      document.getElementById('ambient-icon').innerHTML = `
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>`;
+    }
+    return;
+  }
+
+  // Fallback: Web Audio ambient drone if SC widget not available
+  if (ambientActive) {
+    if (!ambientCtx) ambientCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ambientCtx.state === 'suspended') ambientCtx.resume();
+    const freqs = [40, 80, 120, 432];
+    freqs.forEach((freq, i) => {
+      const osc = ambientCtx.createOscillator();
+      const gain = ambientCtx.createGain();
+      const filter = ambientCtx.createBiquadFilter();
+      osc.type = i < 2 ? 'sine' : 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.value = i === 0 ? 0.06 : 0.02;
+      filter.type = 'lowpass'; filter.frequency.value = 800;
+      osc.connect(filter); filter.connect(gain); gain.connect(ambientCtx.destination);
+      osc.start();
+      const lfo = ambientCtx.createOscillator();
+      const lfoGain = ambientCtx.createGain();
+      lfo.frequency.value = 0.05 + i * 0.03;
+      lfoGain.gain.value = freq * 0.02;
+      lfo.connect(lfoGain); lfoGain.connect(osc.frequency); lfo.start();
+      ambientNodes.push(osc, lfo, gain);
+    });
+    document.getElementById('ambient-icon').innerHTML = `
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>`;
+  } else {
+    ambientNodes.forEach(node => { try { node.stop(); } catch(e) {} });
+    ambientNodes = [];
+    document.getElementById('ambient-icon').innerHTML = `
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>`;
+  }
+});
+
+// Load SoundCloud Widget API
+const scScript = document.createElement('script');
+scScript.src = 'https://w.soundcloud.com/player/api.js';
+document.head.appendChild(scScript);
+
+/* ═══════════════════════════════════════
+   13. LANGUAGE TOGGLE
+═══════════════════════════════════════ */
+const translations = {
+  en: {
+    heroEyebrow: 'Sound of God Recordings ✦ Italian Psytrance Sovereignty',
+    heroSub: "Italian-born. Cosmically summoned. Psytrance's most electrifying new force—\nwhere ancient Italian soul collides with the frequencies of the universe.",
+    bookNow: 'Book Now',
+  },
+  it: {
+    heroEyebrow: 'Sound of God Recordings ✦ Sovranità Psytrance Italiana',
+    heroSub: "Nata in Italia. Convocata dal cosmo. La nuova forza più elettrizzante del Psytrance—\ndove l'anima italiana si scontra con le frequenze dell'universo.",
+    bookNow: 'Prenota Ora',
+  }
+};
+function setLang(lang) {
+  const t = translations[lang];
+  document.querySelector('.hero-eyebrow').textContent = t.heroEyebrow;
+  document.querySelector('.hero-subtitle').innerHTML = t.heroSub.replace('\n', '<br>');
+  const ctaBtn = document.querySelector('.hero-ctas .btn-primary');
+  if (ctaBtn) ctaBtn.textContent = t.bookNow;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn:${lang === 'en' ? 'first-child' : 'last-child'}`).classList.add('active');
+  document.documentElement.lang = lang;
+}
+
+/* ═══════════════════════════════════════
+   14. SMOOTH ANCHOR NAVIGATION
+═══════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) lenis.scrollTo(target, { offset: -80, duration: 1.8 });
+  });
+});
+
+/* ═══════════════════════════════════════
+   15. PERFORMANCE — Pause when tab hidden
+═══════════════════════════════════════ */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && ambientCtx) ambientCtx.suspend();
+  else if (!document.hidden && ambientCtx && ambientActive) ambientCtx.resume();
+});
+</script>
+</body>
+</html>
