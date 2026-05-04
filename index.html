@@ -2035,6 +2035,8 @@ const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 if (!isTouchDevice) {
   const cursor = document.getElementById('cursor');
   const cursorRing = document.getElementById('cursor-ring');
+  // Guard: if elements missing, skip cursor entirely (prevents GSAP TypeError crash)
+  if (cursor && cursorRing) {
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
   document.addEventListener('mousemove', e => {
@@ -2058,6 +2060,7 @@ if (!isTouchDevice) {
       gsap.to(cursorRing, { scale: 1, borderColor: 'rgba(0,240,255,0.5)', duration: 0.3 });
     });
   });
+  } // end cursor null-guard
 }
 
 /* ═══════════════════════════════════════
